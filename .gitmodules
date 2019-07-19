@@ -1,0 +1,3 @@
+[submodule "mtcnn"]
+	path = mtcnn
+	url = https://github.com/jbrownlee/mtcnn.git
