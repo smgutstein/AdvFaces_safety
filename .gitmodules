@@ -1,3 +1,6 @@
 [submodule "mtcnn"]
 	path = mtcnn
 	url = https://github.com/jbrownlee/mtcnn.git
+[submodule "foolbox"]
+	path = foolbox
+	url = https://github.com/bethgelab/foolbox.git
