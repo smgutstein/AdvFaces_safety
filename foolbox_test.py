@@ -60,8 +60,10 @@ if __name__ == "__main__":
     
 
     with foolbox.models.TensorFlowModel(images, logits2.fc8, (0, 255)) as model:
-        #restorer.restore(model.session, '/path/to/vgg_19.ckpt')
+
         idx = np.argmax(model.forward_one(image))
+        import pdb
+        pdb.set_trace()
         raw_conf = model.forward_one(image)
         raw_max = raw_conf.max()
         raw_conf2 = raw_conf-raw_max
