@@ -4,6 +4,3 @@
 [submodule "foolbox"]
 	path = foolbox
 	url = https://github.com/bethgelab/foolbox.git
-[submodule "tensorflow-vgg"]
-	path = tensorflow-vgg
-	url = https://github.com/machrisaa/tensorflow-vgg
