@@ -46,15 +46,6 @@ class Adversary_Details(object):
     def change_alpha(self, alpha):
         self.alpha = alpha/100.0
 
-def get_conf(pre_softmax):
-    ps_max = pre_softmax.max()
-    pre_softmax_scaled = pre_softmax-ps_max
-    ps_exp = np.exp(pre_softmax_scaled)
-    ps_norm = 1./ps_exp.sum()
-    conf = ps_exp * ps_norm
-    return conf
-
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test foolbox")
@@ -77,13 +68,13 @@ if __name__ == "__main__":
         pre_softmax = model.forward_one(detailer.image)
         idx = np.argmax(pre_softmax)
         category = ' '.join(detailer.synset[idx].split()[1:])
-        conf = get_conf(pre_softmax)
+        conf = foolbox.utils.softmax(pre_softmax)
 
         adv_image = attack(detailer.image, idx)
         pre_softmax2 = model.forward_one(adv_image)
         idx2 = np.argmax(pre_softmax2)
         category2 = ' '.join(detailer.synset[idx2].split()[1:])
-        conf2 = get_conf(pre_softmax2)
+        conf2 = foolbox.utils.softmax(pre_softmax2)
 
         diff = np.abs(detailer.image-adv_image)*50
 
