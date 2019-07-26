@@ -73,13 +73,13 @@ if __name__ == "__main__":
                                                detailer.vgg16_net)
         
         attack = foolbox.attacks.FGSM(model)
-        adv_image = attack(detailer.image, idx)
         
         pre_softmax = model.forward_one(detailer.image)
         idx = np.argmax(pre_softmax)
         category = ' '.join(detailer.synset[idx].split()[1:])
         conf = get_conf(pre_softmax)
 
+        adv_image = attack(detailer.image, idx)
         pre_softmax2 = model.forward_one(adv_image)
         idx2 = np.argmax(pre_softmax2)
         category2 = ' '.join(detailer.synset[idx2].split()[1:])
